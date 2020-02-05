@@ -4,8 +4,12 @@ const app = express();
 
 app.use(router);
 
-router.get('/', (req, res)=>{
+router.get('/message', (req, res)=>{
     res.send('hola desde get');
+})
+
+router.post('/message', (req, res)=>{
+    res.send('hola desde post');
 })
 
 app.listen(3000);
