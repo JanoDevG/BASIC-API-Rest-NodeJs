@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(router);
 
 router.get('/message', (req, res)=>{
-    res.send('hola desde get');
-})
+    console.log(req.headers);
+    res.header({"valor-propio": "agregando valor propio"}); //header personalizado
+    res.send('lista de mensajes');
+});
 
 router.delete('/message', (req, res)=>{
     console.log(req.query);
