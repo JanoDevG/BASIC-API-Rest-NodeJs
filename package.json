@@ -2,7 +2,7 @@
   "name": "api-rest-nodejs",
   "version": "1.0.0",
   "description": "Backend in NodeJs of a Rest API to be consumed",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
