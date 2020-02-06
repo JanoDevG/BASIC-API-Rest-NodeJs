@@ -16,7 +16,7 @@ router.get('/message', (req, res)=>{
 router.delete('/message', (req, res)=>{
     console.log(req.query);
     console.log(req.body);
-    res.send('eliminado correctamente el mensaje: '+ req.body.text);
+    res.status(201).send('eliminado correctamente el mensaje: '+ req.body.text);
 })
 
 app.listen(3000);
