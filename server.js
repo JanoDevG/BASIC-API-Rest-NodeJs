@@ -1,28 +1,15 @@
 const express = require('express');
-const router = express.Router();
+const router = require('./network/routes');
 const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-const response = require('./response');
-app.use(router);
+const response = require('.');
 
-router.get('/message', (req, res) => {
-    console.log(req.headers);
-    res.header({ "valor-propio": "agregando valor propio" }); //header personalizado
-    response.success(req, res, 'lista de mensajes');
-});
+router(app); //a nuestro router importado desde './network/routes' se le pasa app
 
-router.post('/message', (req, res) => {
-    console.log(req.query);
-    console.log(req.body);
-    if(req.query.error == 'ok'){
-        response.error(req, res, 'error inesperado', 400);
-    }else{
-        response.error(req, res, 'creado correctamente', 400);
-    }
-})
+app.use('/app', express.static('public'));
 
 app.listen(3000);
 console.log('escuchando desde 3000');
