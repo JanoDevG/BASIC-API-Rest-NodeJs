@@ -2,23 +2,21 @@ const express = require('express');
 const router = express.Router();
 const response = require('../../network/response')
 const controller = require('./controller');
+
 router.get('/', (req, res) => {
-    console.log(req.headers);
-    res.header({ "valor-propio": "agregando valor propio" }); //header personalizado
-    response.success(req, res, 'lista de mensajes');
+  console.log(req.headers);
+  res.header({ "valor-propio": "agregando valor propio" }); //header personalizado
+  response.success(req, res, 'lista de mensajes');
 });
 
 router.post('/', (req, res) => {
-    const {user, message} = req.body;
-    
-   //var user = "hola"
-   //var message = "algo"
-   controller.addMessage(user, message);
-    //if (req.query.error == 'ok') {
-      //  response.error(req, res, 'error inesperado', 400, 'simulando errores para ver por logs');
-    //} else {
-  //      response.error(req, res, 'creado correctamente', 201);
-//    }
+  controller.addMessage(req.body.user, req.body.message)
+    .then((fullMessage) => {
+      response.success(req, res, fullMessage, 201);
+    })
+    .catch(e => {
+      response.error(req, res, 'información inválida', 400, 'error en el controlador')
+    })
 })
 
 module.exports = router;
