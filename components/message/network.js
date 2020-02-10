@@ -5,8 +5,14 @@ const controller = require('./controller');
 
 router.get('/', (req, res) => {
   console.log(req.headers);
-  res.header({ "valor-propio": "agregando valor propio" }); //header personalizado
-  response.success(req, res, 'lista de mensajes');
+  controller.getMessages()
+    .then((messageList) => {
+      response.success(req, res, messageList, 200);
+    })
+    .catch(e => {
+      response.error(req, res, 'Unexpected error (error en get de network', 500, e);
+      console.log("[Error metodo get de network]: " + e);
+    })
 });
 
 router.post('/', (req, res) => {
