@@ -9,6 +9,7 @@ db.connect('mongodb+srv://Alejandro:1234@backendnodejs-3efrj.gcp.mongodb.net/tes
 })
 console.log('Mongo Conectado');
 
+//Agregar
 function addMessage(message) {
     const myMessage = new Model(message);
     myMessage.save();
