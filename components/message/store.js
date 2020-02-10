@@ -15,6 +15,7 @@ function addMessage(message) {
     myMessage.save();
 };
 
+//obtener
 async function getMessage() {
     const message = await Model.find();
     return message;
