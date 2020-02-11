@@ -13,4 +13,14 @@ router.post('/', (req, res) => {
         })
 })
 
+router.get('/', (req, res) => {
+    controller.getUsers()
+        .then(data => {
+            response.success(req, res, data, 200);
+        })
+        .catch(err => {
+            response.error(req, res, 'internal error', 500, err);
+        })
+})
+
 module.exports = router;

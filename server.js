@@ -8,7 +8,6 @@ db('mongodb+srv://Alejandro:1234@backendnodejs-3efrj.gcp.mongodb.net/test?retryW
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-const response = require('.');
 
 router(app); //a nuestro router importado desde './network/routes' se le pasa app
 
