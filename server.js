@@ -2,6 +2,10 @@ const express = require('express');
 const router = require('./network/routes');
 const app = express();
 
+const db = require('./db');
+
+db('mongodb+srv://Alejandro:1234@backendnodejs-3efrj.gcp.mongodb.net/test?retryWrites=true&w=majority');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const response = require('.');
