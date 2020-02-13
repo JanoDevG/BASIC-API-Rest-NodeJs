@@ -5,7 +5,7 @@ const controller = require('./controller');
 const multer = require('multer');
 
 const upload = multer({
-  dest: 'uploads/'
+  dest: 'public/files/'
 });
 
 router.get('/', (req, res) => {
@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', upload.single('file'), (req, res) => {
-  controller.addMessage(req.body.user, req.body.message)
+  console.log(req.file) //imprimir información del archivo
+  controller.addMessage(req.body.user, req.body.message, req.file)
     .then((fullMessage) => {
       response.success(req, res, fullMessage, 201);
     })

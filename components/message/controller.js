@@ -1,19 +1,24 @@
 const moment = require('moment'); //librería para requerir fechas
 const store = require('./store');
 
-function addMessage(user, message) {
+function addMessage(user, message, file) {
     return new Promise((resolve, reject) => {
         if (!user || !message) {
             console.error('[addMessage] no se ingresaron usuario y mensaje');
             reject('se requiere usuario y mensaje');
             return false;
         }
+        let fileUrl = '';
+        if (file) {
+            fileUrl = 'http://localhost:3000/app/files/' + file.filename;
+        }
         console.log(user);
         console.log(message);
         const fullMessage = {
             user: user,
             message: message,
-            date: moment().format('DD/MM/YYYY HH:mm')
+            date: moment().format('DD/MM/YYYY HH:mm'),
+            file: fileUrl,
         }
         console.log(fullMessage);
         resolve(fullMessage);
