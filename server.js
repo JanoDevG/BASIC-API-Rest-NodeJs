@@ -3,11 +3,11 @@ const router = require('./network/routes');
 const app = express();
 const socket = require('./socket');
 const server = require('http').Server(app);
-
+const config = require('./config');
 
 const db = require('./db');
 
-db('mongodb+srv://Alejandro:1234@backendnodejs-3efrj.gcp.mongodb.net/test?retryWrites=true&w=majority');
+db(config.dbUrl);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,6 +17,6 @@ router(app); //a nuestro router importado desde './network/routes' se le pasa ap
 
 app.use('/app', express.static('public'));
 
-server.listen(3000, () => {
-    console.log('servidor encendido')
+server.listen(config.port, () => {
+    console.log('servidor encendido: ' + config.host + ':' + config.port)
 });
